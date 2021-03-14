@@ -1,0 +1,1 @@
+su node -c "forever startall"

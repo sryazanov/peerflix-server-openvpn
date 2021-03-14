@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+    peerflix-server-openvpn:
+        cap_add:
+            - NET_ADMIN
+        devices:
+            - /dev/net/tun
+        build: .
+        secrets:
+            - credentials
+        ports:
+            - 9000:9000
+        environment:
+            - REMOTE_SERVER=${REMOTE_SERVER}
+        volumes:
+            - ./var/peerflix/cache/:/tmp/torrent-stream/
+            - ./var/peerflix/home/:/home/node/
+secrets:
+    credentials:
+        file: ./.credentials
