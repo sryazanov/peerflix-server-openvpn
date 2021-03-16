@@ -3,7 +3,6 @@
 # Get the port
 tun_ip=$(ip address show dev tun0 | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1)
 pvpn_get_port_url="https://xu515.pvdatanet.com/v3/mac/port?ip%5B%5D=$tun_ip"
-echo curl -s -f "$pvpn_get_port_url"
 pvpn_response=$(curl -s -f "$pvpn_get_port_url")
 pvpn_curl_exit_code=$?
 
