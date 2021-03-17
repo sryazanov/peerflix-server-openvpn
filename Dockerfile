@@ -6,5 +6,7 @@ RUN apk add --no-cache tini openvpn ffmpeg curl && \
 ADD ./config/ /etc/openvpn/
 ADD ./init.sh /root/init.sh
 
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 CMD nslookup one1.one.one.one > /dev/null || exit 1
+
 EXPOSE 9000
 ENTRYPOINT [ "/sbin/tini", "--", "/root/init.sh" ]
